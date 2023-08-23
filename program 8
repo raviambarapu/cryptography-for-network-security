@@ -1,0 +1,38 @@
+pt=input("Enter a plain text:").upper()
+key="CIPHER"
+x=[]
+k=list(key)
+c=list(key)
+e=[]   #ENCRYPTED LIST
+for i in range(65,91):
+    y=chr(i)
+    x.append(y)
+
+for i in range(len(x)):
+    if x[i] not in k:
+        char=x[i]
+        c.append(char)
+print("Encrypted msg:")
+
+#FOR ENCRYPTION
+
+for i in range(len(pt)):
+    char=pt[i]
+
+    for j in range(len(x)):
+        char2=x[j]
+        if char==char2:
+            n=j
+            break
+    e.append(c[n])
+print(''.join(e))
+
+#FOR DECRYPTION
+print("Encrypted msg:")
+for i in range(len(e)):
+
+    print(pt[i],end="")
+    
+
+        
+    
