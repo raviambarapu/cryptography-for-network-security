@@ -1,0 +1,29 @@
+import random
+
+def sha3_1024_sponge():
+    # Initialize the state matrix with zeros
+    state = [[0] * 64 for _ in range(5)]  # 5x64 matrix for 1024-bit block size
+
+    # Number of rounds to reach the condition
+    rounds = 0
+
+    # Continue until all lanes have at least one nonzero bit
+    while not all(any(bit != 0 for bit in row) for row in state):
+        # Absorb phase
+        for i in range(5):
+            for j in range(64):
+                # Simulate a random 64-bit block
+                state[i][j] ^= random.getrandbits(64)
+
+        # Squeeze phase (ignore output in this case)
+        for i in range(5):
+            for j in range(64):
+                _ = state[i][j]
+
+        rounds += 1
+
+    return rounds
+
+# Main simulation
+rounds_needed = sha3_1024_sponge()
+print(f"Rounds needed to have all nonzero lanes: {rounds_needed}")
